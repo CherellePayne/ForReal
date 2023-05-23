@@ -1,3 +1,4 @@
+//sever.js will call this function 
 const dotenv = require('dotenv');
 dotenv.config();
 const MongoClient = require('mongodb').MongoClient;
