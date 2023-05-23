@@ -4,7 +4,7 @@ const ObjectId = require('mongodb').ObjectId;
 //send a responce, like a contract 
 const getAll = async (req, res, next) => {
   //inside .db() I can put 'database name'
-  const result = await mongodb.getDb().db().collection('contacts').find();
+  const result = await mongodb.getDb().db().collection('temples').find();
   result.toArray().then((lists) => {
     res.setHeader('Content-Type', 'application/json');
     res.status(200).json(lists);
