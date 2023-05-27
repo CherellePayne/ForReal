@@ -2,4 +2,10 @@
 GET http://localhost:3001 HTTP/1.1
 
 ###
-PUT http://localhost:3001 HTTP/1.1
+GET http://localhost:3001/temples HTTP/1.1
+
+###
+GET https://webservices-project-lfkx.onrender.com HTTP/1.1
+
+###
+GET https://webservices-project-lfkx.onrender.com/temples HTTP/1.1
