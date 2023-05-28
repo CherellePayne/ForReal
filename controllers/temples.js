@@ -35,44 +35,45 @@ const getAll = async (req, res) => {
 // };
 
 const getSingle = async (req, res) => {
-  try{
-  if(!ObjectId.isValid(req.params.id)) {
-    res.status(400).jason('Must use a valid temple id to find temple.');
-  }
-  //this same parameter is required in delete 
-  const templeId = new ObjectId(req.params.id);
-  const result = await mongodb
-  .getDb()
-  .db()
-  .collection('TEMPLES_COLLECTION')
-  //updated week 6
-  .find({ _id: userId })
-  .toArray((err, result) => {
-    if (err) {
-      res.status(400).json({ message: err });
+  try {
+    if (!ObjectId.isValid(req.params.id)) {
+      res.status(400).json('Must use a valid temple id to find temple.');
     }
-  //week5 
-  // .find({ _id: templeId });
-  // result.toArray().then((lists) => {
-    //practice printing db info
-    // console.log(lists);
-    res.setHeader('Content-Type', 'application/json');
-    res.status(200).json(lists[0]);
-  });}
-  catch(err){
+    //this same parameter is required in delete 
+    const templeId = new ObjectId(req.params.id);
+    const result = await mongodb
+      .getDb()
+      .db()
+      .collection('TEMPLES_COLLECTION')
+      //updated week 6
+      .find({ _id: templeId })
+    result.toArray((err, lists) => {
+      if (err) {
+        res.status(400).json({ message: err });
+      }
+      //week5 
+      // .find({ _id: templeId });
+      // result.toArray().then((lists) => {
+      //practice printing db info
+      // console.log(lists);
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json(lists[0]);
+    });
+  }
+  catch (err) {
     res.status(400).json({ message: err });
   }
 };
 
 const createTemple = async (req, res) => {
-  try{
+  try {
     validateTemple(req.body)
-  const temple = {
-    name: req.body.name,
-    src: req.body.src,
-    copyright: req.body.copyright,
-    status: req.body.status,
-  };
+    const temple = {
+      name: req.body.name,
+      src: req.body.src,
+      copyright: req.body.copyright,
+      status: req.body.status,
+    };
 
 //getting data handling in the server, then save in the database...the variable will return something 
 const response = await mongodb.getDb().db().collection('TEMPLES_COLLECTION').insertOne(temple);
@@ -117,7 +118,7 @@ const updateTemple = async (req, res) => {
     if (!ObjectId.isValid(req.params.id)) {
     res.status(400).json('Must use a valid temple id to update a temple.');
   }
-  const userId = new ObjectId(req.params.id);
+  const templeId = new ObjectId(req.params.id);
   const temple = {
     name: req.body.name,
     src: req.body.src,
@@ -128,7 +129,7 @@ const updateTemple = async (req, res) => {
   .getDb()
   .db()
   .collection('TEMPLES_COLLECTION')
-  .replaceOne({ _id: userId }, temple);
+  .replaceOne({ _id: templeId }, temple);
 // console.log(response);
 if (response.modifiedCount > 0) {
   res.status(204).send();
