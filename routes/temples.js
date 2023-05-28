@@ -9,9 +9,9 @@ router.get('/', templesController.getAll);
 router.get('/:id', templesController.getSingle);
 
 
-router.post('/', validation.saveTemple,templesController.createTemple);
+router.post('/',templesController.createTemple);
 
-router.put('/:id', validation.saveTemple,templesController.updateTemple);
+router.put('/:id',templesController.updateTemple);
 
 router.delete('/:id', templesController.deleteTemple);
 

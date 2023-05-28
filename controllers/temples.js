@@ -1,7 +1,13 @@
 const TEMPLES_COLLECTION = 'temples'
 const mongodb = require('../db/connect');
 const ObjectId = require('mongodb').ObjectId;
+const validateTemple = (data) => {
+const {name, src, copyright, status} = data;
+if (!name || !src || !copyright || !status){ 
+  throw new Error('all feilds must be filled, name, src, copyright, status')
+}
 
+}
 //send a responce, like a contract 
 //create function for wards (start with console.log, don't connect to mongo yet...
 const getAll = async (req, res) => {
@@ -9,7 +15,7 @@ const getAll = async (req, res) => {
   const result = await mongodb
     .getDb()
     .db()
-    .collection(TEMPLES_COLLECTION)
+    .collection('TEMPLES_COLLECTION')
     //added in lesson 6
     .find()
     result.toArray((err, list) => {
@@ -17,7 +23,7 @@ const getAll = async (req, res) => {
     res.status(400).json({ message: err });
     }
     res.setHeader('Content-Type', 'application/json');
-    res.status(200).json(lists);
+    res.status(200).json(list);
     });
 };
 
@@ -29,6 +35,7 @@ const getAll = async (req, res) => {
 // };
 
 const getSingle = async (req, res) => {
+  try{
   if(!ObjectId.isValid(req.params.id)) {
     res.status(400).jason('Must use a valid temple id to find temple.');
   }
@@ -37,7 +44,7 @@ const getSingle = async (req, res) => {
   const result = await mongodb
   .getDb()
   .db()
-  .collection(TEMPLES_COLLECTION)
+  .collection('TEMPLES_COLLECTION')
   //updated week 6
   .find({ _id: userId })
   .toArray((err, result) => {
@@ -51,12 +58,15 @@ const getSingle = async (req, res) => {
     // console.log(lists);
     res.setHeader('Content-Type', 'application/json');
     res.status(200).json(lists[0]);
-  });
+  });}
+  catch(err){
+    res.status(400).json({ message: err });
+  }
 };
 
 const createTemple = async (req, res) => {
-  // console.log(req.body);
-  //this is the body of the request with the informationto create a contact
+  try{
+    validateTemple(req.body)
   const temple = {
     name: req.body.name,
     src: req.body.src,
@@ -65,38 +75,46 @@ const createTemple = async (req, res) => {
   };
 
 //getting data handling in the server, then save in the database...the variable will return something 
-const response = await mongodb.getDb().db().collection(TEMPLES_COLLECTION).insertOne(temple);
+const response = await mongodb.getDb().db().collection('TEMPLES_COLLECTION').insertOne(temple);
 //added week 6
-if (response.acknowledged) {
+if(response.acknowledged) {
   //return the satus with id created
 // console.log(response);
 res.status(201).json(response);
 } else {
   res.status(500).json(response.error || 'Some error occurred while creating the temple.');
+}}
+catch(err){
+  res.status(400).json({ message: err.message });
 }
 };
 
 const deleteTemple = async (req, res) => {
-  if (!ObjectId.isValid(req.params.id)) {  
+  try{
+    if (!ObjectId.isValid(req.params.id)) {  
     res.status(400).json('Must use a valid contact id to delete a contact.');
   }
   const userId = new ObjectId(req.params.id);
   const response = await mongodb
   .getDb()
   .db()
-  .collection(TEMPLES_COLLECTION)
+  .collection('TEMPLES_COLLECTION')
   .deleteOne({ _id: userId }, true);
   console.log(response);
   if (response.deletedCount > 0) {
     res.status(204).send();
   } else {
   res.status(500).json(response.error || 'Some error occurred while deleting the contact.');
+}}
+catch(err){
+  res.status(400).json({ message: err });
 }
 };
 
 const updateTemple = async (req, res) => {
-  //update week 6
-  if (!ObjectId.isValid(req.params.id)) {
+  try{
+    validateTemple(req.body)
+    if (!ObjectId.isValid(req.params.id)) {
     res.status(400).json('Must use a valid temple id to update a temple.');
   }
   const userId = new ObjectId(req.params.id);
@@ -109,13 +127,16 @@ const updateTemple = async (req, res) => {
   const response = await mongodb
   .getDb()
   .db()
-  .collection(TEMPLES_COLLECTION)
+  .collection('TEMPLES_COLLECTION')
   .replaceOne({ _id: userId }, temple);
 // console.log(response);
 if (response.modifiedCount > 0) {
   res.status(204).send();
 } else {
   res.status(500).json(response.error || 'Some error occurred while updating the contact.');
+}}
+catch(err){
+  res.status(400).json({ message: err.message });
 }
 };  
 
