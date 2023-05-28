@@ -5,10 +5,10 @@
     "description": "Cherelle API",
     "version": "1.0.0"
   },
-  "host": "localhost:3001",
+  "host": "webservices-project-lfkx.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http"
+    "https"
   ],
   "paths": {
     "/api-docs": {
