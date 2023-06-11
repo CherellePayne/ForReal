@@ -5,11 +5,11 @@ const doc = {
     title: 'My API',
     description: 'Cherelle API',
   },
-  // host:'webservices-project-lfkx.onrender.com',
-  // schemes: ['https'],
+  host:'webservices-project-lfkx.onrender.com',
+  schemes: ['https'],
   //Good to test on local, but change back to lines 8 and 9 on render
-  host:'localhost:3001',
-  schemes: ['http'],
+  // host:'localhost:3001',
+  // schemes: ['http'],
 };
 
 const outputFile = './swagger.json';

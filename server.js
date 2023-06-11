@@ -2,7 +2,21 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const mongodb = require('./db/connect');
-const port = process.env.PORT || 3001;
+// const port = process.env.PORT || 3001;//cahnged for week 8
+const port = process.env.PORT;
+const { auth } = require('express-openid-connect');
+require('dotenv').config()
+
+const config = {
+  authRequired: false,
+  auth0Logout: true,
+  secret: process.env.SECRET,
+  baseURL: process.env.BASEURL,
+  clientID: process.env.CLIENTID,
+  issuerBaseURL: process.env.ISSUER,
+};
+
+app.use(auth(config));
 
 app
   .use(bodyParser.json())
