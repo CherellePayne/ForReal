@@ -12,7 +12,7 @@ app
     res.setHeader('Access-Control-Allow-Origin', '*');
     next();
   })
-  .use('/', require('./routes'));
+  .use('/', require('./routes'));//something is wrong here
 
 mongodb.initDb((err) => {
   if (err) {

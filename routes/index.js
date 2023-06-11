@@ -13,7 +13,7 @@ const config = {
 const express = require('express');
 const router = express.Router();
 
-router.use(auth(config));
+router.use(auth(config));//someting is wromg here
 router.get('/checkingLoginStatus', (req, res) => {
     res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
  });
