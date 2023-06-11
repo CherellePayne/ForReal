@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const mongodb = require('./db/connect');
-// const port = process.env.PORT || 3001;//cahnged for week 8
+// const port = process.env.PORT || 3001;//changed for week 8
 const port = process.env.PORT;
 
 
