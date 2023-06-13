@@ -7,6 +7,7 @@ GET http://localhost:3001/temples HTTP/1.1
 ###
 GET http://localhost:3001/login HTTP/1.1
 
+
 ###
 GET http://localhost:3001/logout HTTP/1.1
 ###

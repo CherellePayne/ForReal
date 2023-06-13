@@ -23,16 +23,5 @@ router.use('/temples', require('./temples'));
 
 module.exports = router;
 
-// from OAuth video
-// router.get("/", (req, res) => {
-//     console.log (req.oidc.isAuthenticated());
-//     res.render("index", {
-//         title: "Express Demo"
-//         isAuthenticated: req.oidc.isAuthenticated(),
-// });
-// });
 
-// app.get('/', (req, res) => {
-//     res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
-//   });
 

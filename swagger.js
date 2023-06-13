@@ -14,6 +14,7 @@ const doc = {
 
 const outputFile = './swagger.json';
 const endpointsFiles = ['./routes/index.js'];
+// const swaggerUi = require('swagger-ui-express');
 
 // generate swagger.json
 swaggerAutogen(outputFile, endpointsFiles, doc);
