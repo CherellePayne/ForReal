@@ -8,7 +8,7 @@ const doc = {
   host:'webservices-project-lfkx.onrender.com',
   schemes: ['https'],
   //Good to test on local, but change back to lines 8 and 9 on render
-  // host:'localhost:3001',
+  // host:'localhost:3002',
   // schemes: ['http'],
 };
 
