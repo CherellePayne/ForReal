@@ -1,17 +1,22 @@
 ###
-GET http://localhost:3001 HTTP/1.1
+GET http://localhost:3002 HTTP/1.1
 
 ###
-GET http://localhost:3001/temples HTTP/1.1
+GET http://localhost:3002/temples HTTP/1.1
 
 ###
-GET http://localhost:3001/login HTTP/1.1
-
+GET http://localhost:3002/login HTTP/1.1
 
 ###
-GET http://localhost:3001/logout HTTP/1.1
+GET http://localhost:3002/callback HTTP/1.1
 ###
-GET http://localhost:3001/api-docs/ HTTP/1.1
+GET http://localhost:3002/logout HTTP/1.1
+###
+GET http://localhost:3002/api-docs/ HTTP/1.1
+
+###
+GET http://localhost:3002/temples HTTP/1.1
+
 
 ###
 GET https://webservices-project-lfkx.onrender.com HTTP/1.1
@@ -19,5 +24,30 @@ GET https://webservices-project-lfkx.onrender.com HTTP/1.1
 ###
 GET https://webservices-project-lfkx.onrender.com/temples HTTP/1.1
 
- 
+###
+ https://webservices-project-lfkx.onrender.com/temples/6472a68179b6a27904e42e15 HTTP/1.1
 
+###
+GET https://webservices-project-lfkx.onrender.com/login HTTP/1.1
+
+###
+GET https://webservices-project-lfkx.onrender.com/logout HTTP/1.1
+
+###
+GET https://webservices-project-lfkx.onrender.com/callback
+
+
+### 
+
+GET http://localhost:3002/checkLoginStatus HTTP/1.1
+
+### 
+
+GET https://webservices-project-lfkx.onrender.com/login HTTP/1.1
+
+###
+GET https://webservices-project-lfkx.onrender.com/logout HTTP/1.1
+
+### 
+
+GET https://webservices-project-lfkx.onrender.com/callback HTTP/1.1

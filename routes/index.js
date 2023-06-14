@@ -20,6 +20,7 @@ router.get('/checkingLoginStatus', (req, res) => {
 
 router.use('/', require('./swagger'));
 router.use('/temples', require('./temples'));
+router.use('/ancestors', require('./ancestors'));
 
 module.exports = router;
 
